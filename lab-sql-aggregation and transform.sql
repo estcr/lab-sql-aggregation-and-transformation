@@ -24,13 +24,11 @@ FROM sakila.rental as sr;
 --  2.2 Retrieve rental information and add two additional columns to show the month and weekday of the rental. Return 20 rows of results.
 SELECT * , 
 		DATE_FORMAT(rental_date, '%m') AS month,
-        DATE_FORMAT(rental_date, '%d') AS weekday
+        DATE_FORMAT(rental_date, '%W') AS weekday
 FROM sakila.rental as sr
 LIMIT 20;
 
 --  2.3 Bonus: Retrieve rental information and add an additional column called DAY_TYPE with values 'weekend' or 'workday', depending on the day of the week.
---  Hint: use a conditional expression.
-
 SELECT * ,
        CASE
            WHEN WEEKDAY(rental_date) IN (6, 7) THEN 'weekend'
